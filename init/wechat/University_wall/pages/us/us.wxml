@@ -1,0 +1,174 @@
+<view class="head">
+  <view class="head_avater">
+    <image class="avatar" src='{{head.avatarurl}}' mode="aspectFill"></image>
+  </view>
+  <view class="head_right">
+    <view class="head_text_up">
+      <view class="head_text_son">
+        <view class="head_text_num">
+          {{Blogger}}
+        </view>
+        <view class="head_text_txt">
+          观众
+  
+        </view>
+  
+      </view>
+      <view class="head_text_son">
+        <view class="head_text_num">
+          {{Fans}}
+        </view>
+        <view class="head_text_txt">
+          关注
+  
+        </view>
+      </view>
+      <view class="head_text_son">
+        <view class="head_text_num">
+          {{favor_count}}
+        </view>
+        <view class="head_text_txt">
+          获赞
+        </view>
+      </view>
+  
+    </view>
+    <view class="head_son_right"> 
+      <view class="head_attention" wx:if="{{head.student_number != userstu}}">
+  
+        <button bindtap="Fans_Blogger" type="{{FABLEbtye}}" data-user_stu="{{head.student_number}}" data-app_stu="{{userstu}}">{{FABLE}}</button>
+  
+  
+      </view>
+      <view class="head_attention" wx:if="{{head.student_number != userstu}}">
+  
+        <button bindtap="gotomess" type="default" data-user_stu="{{head.student_number}}" data-app_stu="{{userstu}}">私信</button>
+  
+  
+      </view>
+      <view class="head_attention" wx:if="{{head.student_number == userstu}}">
+  
+        <button class="oneselfbtu" bindtap="getinto" type="primary" data-user_stu="{{detail.user.type_text}}" data-app_stu="{{userstu}}">个人信息</button>
+  
+  
+      </view>
+  
+    </view>
+  
+  
+  </view>
+
+
+
+
+
+
+
+</view>
+
+<view class="head_text">
+  <view class="head_text_user">
+    <text class="text_username">{{head.username}}</text>
+    <!-- <text class="text_cas">safds</text> -->
+
+  </view>
+
+  <view class="head_text_date">
+    <text>学号：{{head.student_number}} 属地：{{head.campus}}</text>
+
+  </view>
+
+</view>
+
+<view class="nav">
+  <view class="{{navtype=='all'?'active':''}}" bindtap="click" data-type="all">
+    全部
+  </view>
+  <view class="{{navtype=='text'?'active':''}}" bindtap="click" data-type="text">
+    文本
+  </view>
+
+  <view class="{{navtype=='image'?'active':''}}" bindtap="click" data-type="image">
+    图文
+  </view>
+  <view class="{{navtype=='video'?'active':''}}" bindtap="click" data-type="video">
+    视频
+  </view>
+</view>
+<view class="card" wx:for="{{list}}" wx:key="index" wx:if="{{!item.hidden}}">
+  <view class="card-head">
+    <view class="card_avater">
+      <image class="aaaa" src='{{item.user.avatarurl}}' mode="aspectFill"></image>
+    </view>
+    <view class="title">
+      <text class="nickName">{{item.user.username}}</text>
+      <text class="address">{{item.campus}}</text>
+
+    </view>
+  </view>
+  <view class="card-body" bindtap="nav" data-detail="{{item}}">
+    <view class="card-body_son" wx:if="{{item.type==a}}">
+      <text class="card-body_text" space="ensp" user-select="ture" decode="ture">{{item.text}}</text>
+    </view>
+    <view wx:if="{{item.type==b}}">
+      <text>{{item.text}}</text>
+      <view class="card-body_nine">
+
+        <view class="body_image_view" wx:for="{{item.type_text}}" wx:for-item="type_text" wx:key="index" index="key">
+          <image class="card-body_image" src="{{type_text.url}}" mode="aspectFill"></image>
+        </view>
+
+      </view>
+    </view>
+    <view wx:if="{{item.type==c}}">
+      <text class="card-body_text" space="ensp" user-select="ture" decode="ture">{{item.text}}</text>
+      <view>
+        <video poster="{{item.type_text.video_image}}" src="{{item.type_text.video_url}}" play-btn-position="center"></video>
+      </view>
+
+    </view>
+
+
+
+
+  </view>
+  <view class="card-foot">
+    <view class="card-foot_son">
+      <view class="card-foot_good">
+
+
+
+
+        <view>
+          <image src="../../images/praise.png" mode='widthFix'></image>
+        </view>
+
+        <text>{{item.favor_count}}</text>
+      </view>
+
+    </view>
+
+    <view class="card-foot_son">
+      <view class="card-foot_message">
+        <view>
+          <image src="../../images/interactive.png" mode='widthFix'></image>
+        </view>
+        <text>{{item.comment_count}}</text>
+      </view>
+
+    </view>
+    <view class="card-foot_son">
+      <view class="card-foot_date">
+        <text>{{item.create_time.time01}}</text>
+      </view>
+
+    </view>
+
+
+
+
+
+
+
+  </view>
+</view>

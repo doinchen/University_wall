@@ -1,0 +1,43 @@
+<view class="video_box" bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd">
+    <!-- 上滑滑动 动画盒子 -->
+    <view class="ani_box" animation="{{animationData}}">
+        <!-- 视频列表 -->
+        <view wx:for="{{videoList}}" wx:key="index" class="item-{{item.id}} item">
+            <video id="video-{{index}}" src="{{item.type_text.video_url}}" autoplay="{{false}}" loop="{{true}}" object-fit="contain" show-fullscreen-btn="{{true}}" vslide-gesture-in-fullscreen="{{false}}" />
+
+
+            <view class="video_bottom">
+                <view class="video_left">
+                <view class="video_avater">
+                    <image src="{{item.user.avatarurl}}" mode="aspectFill"></image>
+
+                </view>
+                <view>
+                    <text>{{item.user.username}}</text>
+                </view>
+            </view>
+            <view class="video_right">
+                <view class="video_right_son">
+                    <view class="box_d">
+                    <image src="../../images/praise-w.png" mode="widthFix"></image>
+                    </view>
+                    <text class="asd">{{item.favor_count}}</text>
+                </view>
+                <view class="video_right_son">
+                    <view class="box_d">
+                    <image src="../../images/message.png" mode="widthFix"></image>
+                    </view>
+                    <text class="asd">{{item.comment_count}}</text>
+                </view>
+
+            
+            </view>
+            
+            </view>
+
+
+
+
+        </view>
+    </view>
+</view>

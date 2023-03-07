@@ -1,0 +1,29 @@
+
+.if_image{
+  width: 100%;
+}
+.if_image image{
+  width: 100%;
+}
+.if_username{
+  background-color: #ededed;
+  width: 90%;
+  height: 60rpx;
+  text-align: center;
+  align-items: center;
+  font-size: 43rpx;
+  margin: 30rpx auto;
+}
+button{
+  margin: 20rpx 0 ;
+}
+.if_password input{
+  background-color: #ededed;
+  width: 90%;
+  height: 60rpx;
+  text-align: center;
+  align-items: center;
+  font-size: 43rpx;
+  margin: 30rpx auto;
+
+}

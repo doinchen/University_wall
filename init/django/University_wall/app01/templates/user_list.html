@@ -1,0 +1,120 @@
+
+
+
+{% extends 'layout.html' %}
+
+{% load static %}
+{% block title %}
+    <title>用户管理</title>
+{% endblock %}
+{% block content %}
+    <h1 style="float: left">用户列表</h1>
+           <form style="width: 400px;
+           display: none;
+           height:40px;margin-right: 150px;float: right" enctype="multipart/form-data" method="post" action="/user/upload/">
+    {% csrf_token %}
+
+            <div style="float: left;width: 50px;height: 40px;line-height: 40px;margin: 0  -205px 0 0 !important;">
+                <input id="file" type="file" width=auto name="file" onchange="chover(this.value)" accept="xlsx">
+            </div>
+
+            <div class="layui-form-item"
+                 style="float: right;height: 40px;clear: none !important;">
+                <div class="layui-input-block" style="width: 100% !important;margin: 0px 0 0 0 !important;">
+                    <button type="submit" id="subin" class="layui-btn" lay-submit="" lay-filter="demo1" >立即提交</button>
+                </div>
+            </div>
+        </form>
+
+    <div style="float: right;margin-right: 150px;height: 35px; line-height: 35px">
+        <a class="layui-btn layui-btn-xs" href="/user/add/">添加用户</a>
+
+
+    </div>
+    <div  style="float: right;margin-right: 150px;height: 35px; line-height: 35px">
+            <input class="layui-btn layui-btn-xs" style=" color: white;background-color:#009688 ;border: none;font-size: 12px " type="button" value="批量添加" class="btn" onclick="clickFile()">
+    </div>
+
+
+    <div class="layui-form">
+        <table class="layui-table">
+            <colgroup>
+                <col width="150">
+                <col width="150">
+                <col width="200">
+                <col>
+            </colgroup>
+            <thead>
+            <tr>
+                <th>用户名</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>学号</th>
+                <th>密码</th>
+                <th>校区</th>
+                <th>院系</th>
+                <th>专业</th>
+                <th>入学时间</th>
+                <th>层次</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for obj in data_list %}
+                <tr>
+                    <td>{{ obj.username }}</td>
+                    <td>{{ obj.name }}</td>
+                    <td>{{ obj.get_gender_display }}</td>
+                    <td>{{ obj.age }}</td>
+                    <td>{{ obj.student_number }}</td>
+                    <td>{{ obj.password }}</td>
+                    <td>{{ obj.campus }}</td>
+                    <td>{{ obj.department }}</td>
+                    <td>{{ obj.profession }}</td>
+                    <td>{{ obj.create_time }}</td>
+                    <td>{{ obj.level }}</td>
+                    <td>
+
+
+                        <a class="layui-btn layui-btn-xs" lay-event="edit" href="/user/{{ obj.id }}/edit/">编辑</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" href="/user/{{ obj.id }}/delete/">删除</a>
+
+                    </td>
+
+
+                </tr>
+
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function clickFile(){
+        console.log('1')
+        const input = document.querySelector('#file')
+                    input.click()
+    }
+    function chover(x){
+        console.log('2')
+        const input = document.querySelector('#subin')
+        input.click()
+
+    }
+    </script>
+
+
+
+
+
+
+
+
+{% endblock %}
+{% block js %}
+    <script src="{% static 'css/layui/layui.js' %}"></script>
+{% endblock %}

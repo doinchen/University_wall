@@ -1,0 +1,95 @@
+<view id='myLogin'>
+
+
+
+    <view class="list">
+        <view class="list_li">
+            <view class="list_title ">头像</view>
+            <view class="weui-cell_access aaa">
+
+                <view class="list_text list_text_a text_image">
+                    <image src="{{user_in.avatarurl}}"></image>
+
+                </view>
+                <text class="weui-cell__ft" aria-hidden="true" bindtap="change" data-input="avatarurl"></text>
+            </view>
+
+        </view>
+        <view class="list_li">
+            <view class="list_title">
+                用户名
+            </view>
+            <view class="weui-cell_access aaa">
+                <view class="list_text list_text_a">
+                    {{user_in.username}}
+                </view>
+                <text class="weui-cell__ft" aria-hidden="true" bindtap="change" data-input="username"></text>
+            </view>
+
+
+        </view>
+        <view class="list_li">
+            <view class="list_title">手机号</view>
+            <view class="weui-cell_access aaa">
+                <view class="list_text list_text_a">
+                    {{user_in.id}}
+                </view>
+                <text class="weui-cell__ft" aria-hidden="true"  bindtap="change" data-input="id"></text>
+            </view>
+        </view>
+
+    </view>
+    <view class="list">
+
+        <view class="list_li">
+            <view class="list_title">姓名</view>
+            <view class="list_text">{{user_in.name}}</view>
+        </view>
+        <view class="list_li">
+            <view class="list_title">年龄</view>
+            <view class="list_text">{{user_in.age}}</view>
+        </view>
+        <view class="list_li">
+            <view class="list_title">性别</view>
+            <view class="list_text">{{user_in.gender}}</view>
+        </view>
+
+        <view class="list_li">
+            <view class="list_title">学号</view>
+            <view class="list_text">{{user_in.student_number}}</view>
+        </view>
+        <view class="list_li">
+            <view class="list_title">校区</view>
+            <view class="list_text">{{user_in.campus}}</view>
+        </view>
+        <view class="list_li">
+            <view class="list_title">院系</view>
+            <view class="list_text">{{user_in.department}}</view>
+        </view>
+
+
+
+        <view class="list_li">
+            <view class="list_title">专业</view>
+            <view class="list_text">{{user_in.profession}}</view>
+        </view>
+
+
+
+
+        <view class="list_li">
+            <view class="list_title">层次</view>
+            <view class="list_text">{{user_in.level}}</view>
+        </view>
+        <view class="list_li">
+            <view class="list_title">入学时间</view>
+            <view class="list_text">{{user_in.create_time}}</view>
+        </view>
+
+
+
+
+
+    </view>
+    <button type="primary" bindtap="change" data-input="password">修改密码</button>
+</view>

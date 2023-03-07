@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+
+    {% endblock %}
+<link rel="stylesheet" href="{% static 'css/layui/css/layui.css' %}">
+
+</head>
+<link rel="stylesheet" href="{% static 'css/layui/css/layui.css' %}">
+
+<body>
+<div style="border: 1px solid transparent;height: 60px;background-color: #00F7DE">
+
+
+
+    <ul class="layui-nav" style="float: left">
+        <li class="layui-nav-item">
+            <a href="/index/">后台管理系统</a>
+        </li>
+        {% if request.session.info.naminate_privilege > 0 and request.session.info.add_user_privilege == True %}
+            <li class="layui-nav-item">
+                <a href="/admin/list/">管理员视图</a>
+            </li>
+        {% endif %}
+        {% if request.session.info.manage_user_privilege == True  %}
+            <li class="layui-nav-item">
+                <a href="/user/list/">用户视图</a>
+            </li>
+        {% endif %}
+        {% if request.session.info.audit_privilege == True  %}
+            <li class="layui-nav-item">
+                <a href="/audit/list/">审核</a>
+            </li>
+        {% endif %}
+        {% if request.session.info.manage_message_privilege == True  %}
+            <li class="layui-nav-item">
+                <a href="/manage/list/">发布内容管理</a>
+            </li>
+        {% endif %}
+
+
+
+    </ul>
+
+    <ul class="layui-nav" style="float: right !important;">
+
+
+        <li class="layui-nav-item"  lay-unselect="">
+{#            <span>{{ request.session.info.admin_id }}</span>#}
+
+            <a href="javascript:;">{{ request.session.info.admin_id }}</a>
+{#            <span class="layui-badge">9</span>#}
+            <dl class="layui-nav-child">
+{#                <dd><a href="javascript:;">修改信息</a></dd>#}
+{#                <dd><a href="javascript:;">安全管理</a></dd>#}
+                <dd><a href="/logout/">退出</a></dd>
+            </dl>
+        </li>
+    </ul>
+
+
+</div>
+
+    {% block content %}
+
+    {% endblock %}
+
+    {% block js %}{% endblock %}
+
+    <script src="{% static 'css/layui/layui.js' %}"></script>
+<script>
+layui.use('element', function(){
+  var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+  //监听导航点击
+  element.on('nav(demo)', function(elem){
+    //console.log(elem)
+    layer.msg(elem.text());
+  });
+});
+</script>
+</body>
+</html>

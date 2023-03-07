@@ -1,0 +1,55 @@
+
+  <view class="chatroom" style="height:{{height}}rpx;">
+    <view class="world"><text>聊天</text></view>
+    <scroll-view scroll-y="true" class="lit_body"
+    style="height: {{height2}}rpx;" id="scroll_view" scroll-into-view="{{toLast}}">
+      <view class="card" wx:for="{{stars}}" wx:key="index">
+        <view class="left" wx:if="{{stu!=item.user.student_num}}" id="item{{index}}">
+          <view class="left-card-head">
+            <view class="left-img">
+              <image class="avatar" src='{{item.user.avatarurl}}' mode="aspectFill"></image>
+            </view>
+            <view class="left-title">
+              <text class="nickName">{{item.user.username}}</text>
+            </view>
+          </view>
+          <view class="card-body">
+            <text class="left-text" user-select="{{item.copy}}"bindlongpress ='copy' data-copy='{{item.message}}'>{{item.message}}</text>
+          </view>
+
+        </view>
+        <view class="right" 
+        wx:if="{{stu==item.user.student_num}}" 
+        id="item{{index}}">
+          <view class="right-card-head">
+            <view class="right-img">
+              <image class="avatar" src='{{item.user.avatarurl}}' mode="aspectFill"></image>
+            </view>
+            <view class="right-title">
+              <text class="nickName">{{item.user.username}}</text>
+            </view>
+
+          </view>
+          <view class="right-card-body">
+            <text class="right-text" user-select="{{item.copy}}"bindlongpress ='copy' data-copy='{{item.talkabout}}'>{{item.message}}</text>
+          </view>
+
+        </view>
+
+      </view>
+
+    </scroll-view>
+    <view class="footer">
+      <!-- <view class="message-sender" wx:if="{{login}}">
+        <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userInfo">
+          请登录后参加聊天
+        </button>
+      </view> -->
+      <view class="message-sender" wx:if="{{!login}}">
+        <input class="message-sender-input" type="text-input" placeholder="请输入" bindinput="onTextInput" value="{{talkabout}}"></input>
+        <button class="send-btn" type="primary" bindtap="onSend">
+          <text>发送</text>
+        </button>
+      </view>
+    </view>
+  </view>

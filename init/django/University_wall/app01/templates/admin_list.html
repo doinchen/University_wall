@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>管理员视图</title>
+{% endblock %}
+
+
+{% block content %}
+    <h1 style="float: left">管理员列表</h1>
+    <div style="float: right;margin-right: 150px;height: 35px; line-height: 35px">
+        <a class="layui-btn layui-btn-xs" href="/admin/add/">添加</a>
+    </div>
+
+    <div class="layui-form">
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>管理员ID</th>
+                <th>任命权限</th>
+                <th>添加用户</th>
+                <th>管理用户</th>
+                <th>管理信息</th>
+                <th>审核信息</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for obj in ass %}
+                <tr>
+                    <th>{{ obj.admin_id }}</th>
+                    <th>{{ obj.naminate_privilege }}</th>
+                    <th>{{ obj.add_user_privilege }}</th>
+                    <th>{{ obj.manage_user_privilege }}</th>
+                    <th>{{ obj.manage_message_privilege }}</th>
+                    <th>{{ obj.audit_privilege }}</th>
+                    <td>
+                    {% if adminuser.naminate_privilege > obj.naminate_privilege %}
+
+                        <a class="layui-btn layui-btn-xs" lay-event="edit" href="/admin/{{ obj.id }}/edit/">编辑</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" href="/admin/{{ obj.id }}/delete/" lay-event="del" >删除</a>
+
+                    {% else %}
+                        <span>不可操作</span>
+                    {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+{% endblock %}
+
+
+

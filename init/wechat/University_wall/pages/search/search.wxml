@@ -1,0 +1,106 @@
+
+<view class="weui-search-bar__box head">
+    <view class="close_fa">
+
+        <view aria-role="button" aria-label="清除" class="weui-icon-clear close" wx:if="{{intext.length>0||textmess.length>0}}" bindtap="clearInput"></view>
+    </view>
+
+
+
+
+    <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{textmess}}" bindtap="inputclick" bindinput="inputTyping" />
+
+
+    <view class="search" bindtap="searchclick" >
+        <i class="weui-icon-search"></i>
+    </view>
+
+
+
+
+</view>
+
+
+<view class="card" wx:for="{{list}}" wx:key="index" wx:if="{{hidden}}">
+    <view class="card-head">
+        <view class="card_avater">
+            <image bindtap="Getto" data-stu="{{item.user.type_text}}" class="aaaa" src='{{item.user.avatarurl}}' mode="aspectFill"></image>
+        </view>
+        <view class="title">
+            <text class="nickName">{{item.user.username}}</text>
+            <text class="address">{{item.campus}}</text>
+
+        </view>
+    </view>
+    <view class="card-body" bindtap="nav" data-detail="{{item}}">
+        <view class="card-body_son" wx:if="{{item.type==a}}">
+                    <text class="card-body_text" space="ensp" user-select="ture" decode="ture">{{item.text}}</text>
+        </view>
+        <view wx:if="{{item.type==b}}">
+        <text>{{item.text}}</text>
+        <view class="card-body_nine">
+
+            <view class="body_image_view" wx:for="{{item.type_text}}" wx:for-item="type_text" wx:key="index" index="key">
+                <image class="card-body_image" src="{{type_text.url}}" mode="aspectFill"></image>
+            </view>
+           
+        </view>
+    </view>
+    <view wx:if="{{item.type==c}}">
+                <text class="card-body_text" space="ensp" user-select="ture" decode="ture">{{item.text}}</text>
+                <view>
+                <video 	poster="{{item.type_text.video_image}}" src="{{item.type_text.video_url}}" play-btn-position="center"></video>
+                </view>
+    
+    </view>
+
+
+
+
+    </view>
+    <view class="card-foot">
+        <view class="card-foot_son">
+            <view class="card-foot_good">
+        
+
+
+        
+                <view>
+                <image src="../../images/praise.png" mode='widthFix'></image>
+                </view> 
+           
+                <text>{{item.favor_count}}</text>
+            </view>
+        
+        </view>
+
+        <view class="card-foot_son">
+            <view class="card-foot_message">
+            <view><image src="../../images/interactive.png" mode='widthFix'></image>  </view>
+            <text>{{item.comment_count}}</text>
+        </view>
+        
+        </view>
+        <view class="card-foot_son">
+            <view class="card-foot_date">
+            <text>{{item.create_time.time01}}</text>
+        </view>
+            
+        </view>
+
+
+
+
+
+
+
+    </view>
+</view>
+<view class="heat" wx:if="{{!hidden}}">
+    <view class="heat_top">
+        热点
+    </view>
+    <view class="heat_body" wx:for="{{heatlist}}" wx:key="index">
+        <text bindtap="heatclick"  data-in="{{item.text}}"><text class="hot">{{index+1}}. </text>{{item.text}}</text>
+    </view>
+</view>

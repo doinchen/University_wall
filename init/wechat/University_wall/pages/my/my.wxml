@@ -1,0 +1,25 @@
+<view id='myLogin'>
+    <block>
+        <image id="myIcon" src="{{userInfo.avatarurl}}"></image>
+        <text id='nickName'>{{userInfo.username}}</text>
+    </block>
+    <button bindtap="gotologin" wx:if="{{!login}}">未登录，点此登录</button>
+    <button bindtap="gotoout" wx:if="{{login}}">退出</button>
+</view>
+
+<view class="menu">
+    <view class="menu_li {{check==item.id?'chieck':''}}" 
+    bindtouchstart="onTouchStart"
+    bindtouchmove="onTouchMove" 
+    bindtouchend="onTouchEnd"
+    bindtap="gateTo"
+    data-id="{{item.id}}"
+    wx:for="{{menu_list}}" wx:key="key">
+        <image src="{{item.imgurl}}">
+        </image>
+        <text>{{item.text}}</text>
+
+    </view>
+
+
+</view>

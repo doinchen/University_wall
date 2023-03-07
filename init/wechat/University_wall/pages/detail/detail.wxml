@@ -1,0 +1,315 @@
+<view class="head">
+  <view class="head_avater">
+    <image class="avatar" src='{{detail.user.avatarurl}}' mode="aspectFill"></image>
+  </view>
+  <view class="head_text">
+    <view class="head_text_user">
+      <text class="text_username">{{detail.user.username}} </text>
+      <text class="text_cas">{{detail.campus}}</text>
+
+    </view>
+
+    <view class="head_text_date">
+      <text>{{detail.create_time.time02}}</text>
+
+    </view>
+
+  </view>
+
+
+
+  <view class="head_attention">
+
+    <button bindtap="Fans_Blogger" type="{{FABLbt}}"  wx:if="{{detail.user.type_text != userstu}}" data-user_stu="{{detail.user.type_text}}" data-app_stu="{{userstu}}">{{FABL}}</button>
+
+
+  </view>
+</view>
+<view class="card-body">
+  <view class="card-body_son" wx:if="{{detail.type==a}}">
+    <text class="card-body_text" space="ensp" user-select="ture" decode="ture">{{detail.text}}</text>
+  </view>
+  <view wx:if="{{detail.type==b}}">
+    <text>hhh</text>
+    <image class="show_image" src="{{show_url}}" mode="aspectFit"></image>
+    <scroll-view class="card-body_nine" scroll-x="true">
+
+      <view class="body_image_view {{index == id?'active':''}}" wx:for="{{detail.type_text}}" wx:key="index" data-index="{{index}} " data-url="{{item.url}}" bindtap="choose">
+        <image id="item{{index}}" class="card-body_image" src="{{item.url}}" mode="aspectFill"></image>
+      </view>
+
+
+    </scroll-view>
+  </view>
+  <view wx:if="{{detail.type==c}}">
+    <text class="card-body_text" space="ensp" user-select="ture" decode="ture">{{detail.text}}</text>
+    <view>
+      <video class="video" poster="{{detail.type_text.video_image}}" src="{{detail.type_text.video_url}}" play-btn-position="center"></video>
+    </view>
+
+  </view>
+
+
+
+
+</view>
+
+<view class="card-foot" wx:if="{{send_message}}">
+  <view class="card-foot_son card-foot_son2">
+    <view class="card-foot_date" bindtap="send_fa" data-root_id="0" data-re_user="0" data-depth="0">
+      <text class="input_comment"></text>
+    </view>
+  </view>
+  <view class="card-foot_son">
+    <view class="card-foot_good">
+      <view bindtap="detail_favor" data-new_TS=""  data-new_ustu="">
+        <image src="../../images/praise{{fill_detail_favor}}.png" mode='widthFix'></image>
+      </view>
+      <text>{{detail.favor_count}}</text>
+    </view>
+  </view>
+  <view class="card-foot_son">
+    <view class="card-foot_good">
+      <view>
+        <image src="../../images/hot_blue.png" mode='widthFix'></image>
+      </view>
+      <text>{{detail.viewer_count}}</text>
+    </view>
+  </view>
+  <view class="card-foot_son">
+    <view class="card-foot_message" bindtap="send_fa" data-root_id="null" data-re_user="null" data-depth="0">
+      <view>
+        <image src="../../images/interactive.png" mode='widthFix'></image>
+      </view>
+      <text>{{detail.comment_count}}</text>
+    </view>
+  </view>
+  <view class="card-foot_son">
+      <view class="card-foot_message">
+        <view>
+          <image src="../../images/warning.png" mode='widthFix'></image>
+        </view>
+        <text></text>
+      </view>
+    </view>
+
+
+
+
+
+
+
+
+
+</view>
+
+<view class="send_mess" wx:if="{{!send_message}}">
+  <view class="mess_close" bindtap="mess_close">
+    <image src="../../images/close.png">
+    </image>
+  </view>
+  <view class="card-foot_text">
+    <textarea bindinput="send_con" name="" id="" auto-height="true">
+            </textarea>
+
+  </view>
+  <view>
+    <button type="primary" bindtap="send_son">发送</button>
+  </view>
+</view>
+
+<view class="comment" wx:if="{{comment}}" wx:for="{{commentlist}}" wx:key="index">
+  <view class="comment_head">
+    <view class="head_avater">
+      <image class="avatar" src="{{item.user.avatarurl}}" mode="aspectFill"></image>
+    </view>
+    <view class="head_text">
+      <view class="head_text_user">
+        <text class="text_username">{{item.user.username}} </text>
+      </view>
+      <view class="head_text_date">
+        
+        <text>{{item.create_time.time01}} </text>
+<text class="text_cas">属地：{{item.user.campus}}</text>
+
+      </view>
+    </view>
+    <view class="head_attention">
+      <view class="asdf">
+        <!-- <image src="../../images/warning.png"></image> -->
+      </view>
+    </view>
+  </view>
+  <view class="comment_text">
+    {{item.content_text}}
+  </view>
+  <view class="comment_menu">
+
+
+    <view class="card-foot_son card-foot_son2">
+      <view class="card-foot_good">
+        <view bindtap="comment_fover"  data-comment_id="{{item.id}}" data-depth="{{item.depth}}">
+          <image src="../../images/praise{{item.fill_comment_favor}}.png" mode='widthFix'></image>
+        </view>
+        <text>{{item.favor_count}}</text>
+      </view>
+    </view>
+
+    <view class="card-foot_son card-foot_son2">
+      <view class="card-foot_message">
+        <view bindtap="send_fa" data-root_id="{{item.id}}" data-re_user="{{item.user.student_num}}" data-depth="{{item.depth}}">
+          <image src="../../images/interactive.png" mode='widthFix'></image>
+        </view>
+        <text>{{item.comment_count}}</text>
+      </view>
+    </view>
+    <view class="card-foot_son">
+      <view class="card-foot_message">
+        <view>
+          <image src="../../images/warning.png" mode='widthFix'></image>
+        </view>
+        <text></text>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="more_comment">
+    <view wx:if="{{item.comment_count != 0}}" bindtap="choose_comment" data-id="{{item.id}}" data-TS="{{item.time_TS}}" data-rootuser="{{item.user.student_num}}">
+      更多回复
+    </view>
+  
+  </view>
+
+
+</view>
+
+<view class="details" wx:if="{{!comment}}">
+  <view class="details_hair">
+    <view class="details_hair_text">
+      评论详情
+    </view>
+    <view class="details_hair_close" bindtap="close_choose">
+      <image src="../../images/close.png">
+      
+      </image>
+    </view>
+  </view>
+  <view class="details_head">
+    <view class="comment_head">
+    <view class="head_avater">
+      <image class="avatar" src='{{comment_back_head.user.avatarurl}}' mode="aspectFill"></image>
+    </view>
+    <view class="head_text">
+      <view class="head_text_user">
+        <text class="text_username">{{comment_back_head.user.username}} </text>
+      </view>
+      <view class="head_text_date">
+        <text class="text_cas">属地：{{comment_back_head.user.campus}}</text>
+        <text> 时间：{{comment_back_head.create_time.time01}}</text>
+      </view>
+    </view>
+    <view class="head_attention">
+      <view class="asdf">
+        <!-- <image src="../../images/warning.png"></image> -->
+      </view>
+    </view>
+  </view>
+  <view class="comment_text">
+    {{comment_back_head.content_text}}
+  </view>
+  <view class="comment_menu">
+    <view class="card-foot_son card-foot_son2">
+      <view class="card-foot_good">
+        <view  bindtap="comment_fover"  data-comment_id="{{comment_back_head.id}}" data-depth="{{comment_back_head.depth}}">
+          <image src="../../images/praise{{comment_back_head.fill_comment_favor}}.png" mode='widthFix'></image>
+        </view>
+        <text>{{comment_back_head.favor_count}}</text>
+      </view>
+    </view>
+
+    <view class="card-foot_son card-foot_son2">
+      <view class="card-foot_message">
+        <view  bindtap="send_fa" data-root_id="{{comment_back_head.id}}" data-re_user="{{comment_back_head.user.student_num}}" data-depth="{{comment_back_head.depth}}">
+          <image src="../../images/interactive.png" mode='widthFix'></image>
+        </view>
+        <text>{{comment_back_head.comment_count}}</text>
+      </view>
+    </view>
+    <view class="card-foot_son">
+      <view class="card-foot_message">
+        <view>
+          <image src="../../images/warning.png" mode='widthFix'></image>
+        </view>
+        <text></text>
+      </view>
+    </view>
+
+  </view>
+  
+  </view>
+  <view class="details_for" wx:for="{{comment_back_list}}" wx:key="index">
+    <view class="comment_head">
+    <view class="head_avater">
+      <image class="avatar" src='{{item.user.avatarurl}}' mode="aspectFill"></image>
+    </view>
+    <view class="head_text">
+      <view class="head_text_user">
+        <text class="text_username">{{item.user.username}}</text>
+
+        <text wx:if="{{item.depth != '2'}}"> 回复 {{item.re_user.username}}</text>
+        
+        
+      </view>
+      <view class="head_text_date">
+      <text class="text_cas">属地：{{item.user.campus}}</text>
+        <text> 时间：{{item.create_time.time01}}</text>
+      </view>
+    </view>
+    <view class="head_attention">
+      <view class="asdf">
+        <!-- <image src="../../images/warning.png"></image> -->
+      </view>
+    </view>
+  </view>
+  <view class="comment_text">
+    {{item.content_text}}
+  </view>
+  <view class="comment_menu">
+
+
+    <view class="card-foot_son card-foot_son2">
+      <view class="card-foot_good">
+        <view  bindtap="comment_fover"  data-comment_id="{{item.id}}" data-depth="{{item.depth}}">
+          <image src="../../images/praise{{item.fill_comment_favor}}.png" mode='widthFix'></image>
+        </view>
+        <text>{{item.favor_count}}</text> 
+      </view>
+    </view>
+
+    <view class="card-foot_son card-foot_son2">
+      <view class="card-foot_message">
+        <view  bindtap="send_fa" data-root_id="{{item.root_id}}" data-re_user="{{item.user.student_num}}" data-depth="{{item.depth}}">
+          <image src="../../images/interactive.png" mode='widthFix'></image>
+        </view>
+        <!-- <text>{{item.comment_count}}</text> -->
+      </view>
+    </view>
+    <view class="card-foot_son">
+      <view class="card-foot_message">
+        <view>
+          <image src="../../images/warning.png" mode='widthFix'></image>
+        </view>
+        <text></text>
+      </view>
+    </view>
+
+  </view>
+  
+  </view>
+
+
+
+
+
+</view>

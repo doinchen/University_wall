@@ -1,0 +1,80 @@
+<view class="body">
+
+    <view class="head">
+
+        <view class="head_son {{type == 'text'?'active':' '}}" bindtap="radioChange" data-type="text">
+            文本
+
+        </view>
+        <view class="head_son  {{type == 'image'?'active':' '}}" bindtap="radioChange" data-type="image">
+            图片
+        </view>
+        <view class="head_son  {{type == 'video'?'active':' '}}" bindtap="radioChange" data-type="video">
+            视频
+        </view>
+
+    </view>
+    <view>
+        <view class="weui-cells__title">文本域</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" value="{{input_text}}" placeholder-class="weui-input__placeholder" placeholder="请输入文本" bindinput="inputtext" style="height: 3.3em;" />
+                    <view aria-role="option" title="字数统计" class="weui-textarea-counter">{{len}}</view>
+                </view>
+            </view>
+        </view>
+
+
+    </view>
+
+    <view wx:if="{{type==type_t}}">
+        <!-- <button bindtap="send_text">提交</button> -->
+    </view>
+    <view wx:if="{{type==type_i}}">
+        <view class="card-body_nine">
+
+            <view class="body_image_view" wx:for="{{Url}}" wx:key="index" index="key">
+                <view class="close" bindtap="close_image" data-id="{{index}}">
+
+                    <image src="../../images/close.png"></image>
+                </view>
+                <view class="imageshow">
+                    <image class="card-body_image" src="{{item.path}}" mode="aspectFill"></image>
+                </view>
+
+
+            </view>
+            <view bindtap="up_image" class="body_image_view" wx:if="{{image_number<9}}">
+                <image class="add_image" src="../../images/add.png" mode="widthFix"></image>
+
+            </view>
+
+        </view>
+
+    </view>
+    <view wx:if="{{type==type_v}}">
+
+        <view class="video_fa" wx:if="{{!no_have_video}}">
+        <view class="video_head">
+            <button bindtap="video_image" type="primary">封面</button>
+            <button bindtap="close_video" type="primary">重置</button>
+        </view>
+            <!-- <view class="video_close">
+                <image  src="../../images/close.png"></image>
+
+            </view> -->
+            <view class="video_fa_son">
+                <video object-fit="contain" class="upvideo" poster="{{video.thumbTempFilePath}}" src="{{video.tempFilePath}}"></video>
+            </view>
+
+        </view>
+        <view class="up_btn" wx:if="{{no_have_video}}">
+            <image bindtap="up_video" src="../../images/add.png"></image>
+        </view>
+
+    </view>
+
+    <button type="primary" bindtap="send_text">提交</button>
+<progress percent="{{schedule}}" activeColor="#DC143C"></progress>
+</view>

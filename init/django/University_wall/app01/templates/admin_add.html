@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+    <title>添加管理员</title>
+{% endblock %}
+
+{% block content %}
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+  <legend>添加管理员</legend>
+</fieldset>
+<form method="post" action="" style="width: 25%;margin: 0 auto">
+    {% csrf_token %}
+        <div class="layui-form-item">
+            <label class="layui-form-label">管理员ID</label>
+            <div class="layui-input-inline">
+                <input type="text" name="user" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">管理员密码</label>
+            <div class="layui-input-inline">
+                <input type="text" name="pwd" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+{#    <input type="text" name="user" placeholder="用户名">#}
+{#    <input type="text" name="pwd" placeholder="密码">#}
+    {% if lis.naminate_privilege %}
+        <div class="layui-form-item">
+            <label class="layui-form-label">管理员等级</label>
+            <div class="layui-input-block">
+                <select name="grade" lay-filter="aihao">
+                    {% for x in num %}
+                        <option value="{{x}}">{{x}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    {% endif %}
+
+{#    {% if lis.naminate_privilege %}#}
+{#        <select name="grade">#}
+{#            {% for x in num %}#}
+{#                <option value="{{x}}">{{x}}</option>#}
+{#            {% endfor %}#}
+{#        </select>#}
+{#    {% endif %}#}
+  <div class="layui-form-item">
+    <label class="layui-form-label">管理员权限</label>
+    <div class="layui-input-block" style="height: 40px;line-height: 40px">
+    {% if lis.add_user_privilege %}
+        <input type="checkbox" value="True" name="add_user">添加管理员
+    {% endif %}
+    {% if lis.manage_user_privilege %}
+        <input type="checkbox" value="True" name="manage_user">管理用户
+    {% endif %}
+    {% if lis.manage_message_privilege %}
+        <input type="checkbox" value="True" name="manage_message">管理信息
+    {% endif %}
+    {% if lis.audit_privilege %}
+        <input type="checkbox" value="True" name="audit">审核信息
+    {% endif %}
+
+    </div>
+  </div>
+
+
+{#    {% if lis.add_user_privilege %}#}
+{#        <input type="checkbox" value="True" name="add_user">添加用户#}
+{#    {% endif %}#}
+{#    {% if lis.manage_user_privilege %}#}
+{#        <input type="checkbox" value="True" name="manage_user">管理用户#}
+{#    {% endif %}#}
+{#    {% if lis.manage_message_privilege %}#}
+{#        <input type="checkbox" value="True" name="manage_message">管理信息#}
+{#    {% endif %}#}
+{#    {% if lis.audit_privilege %}#}
+{#        <input type="checkbox" value="True" name="audit">审核信息#}
+{#    {% endif %}#}
+
+
+
+    <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+
+
+</form>
+
+
+<span style="color: red">{{ dc }}</span>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'css/layui/layui.js' %}"></script>
+
+{% endblock %}
+
+

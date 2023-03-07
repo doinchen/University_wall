@@ -1,0 +1,77 @@
+.video_box{
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+.ani_box{
+    /* position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+    transform: translateY(0px);
+    z-index: -1;
+  } 
+  .item{
+    width: 100%;
+    height: 100vh;
+  }
+  video{
+    width: 100%;
+    height: 100%;
+  }
+.video_bottom{
+    position: relative;
+    bottom: 430rpx;
+    /* background-color: burlywood; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+  .video_left{
+    position: relative;
+    top:200rpx;
+    left: 30rpx;
+      width: 260rpx;
+      /* background-color: blanchedalmond; */
+      color: #fff;
+      height: 150rpx;
+  }
+  .video_avater{
+      width: 80rpx;
+      height: 80rpx;
+
+  }
+  .video_avater image{
+      border-radius: 50%;
+
+        width: 80rpx;
+        height: 80rpx;
+}
+.video_right{
+   /* background-color: burlywood; */
+     position: relative;
+    bottom:20rpx; 
+    right:30rpx;
+    width: 60rpx;
+    height: 370rpx;
+    text-align: center;
+    color: #fff;
+
+}
+.video_right image{
+    width: 60rpx;
+
+}
+.video_right_son{
+    margin-top: 20rpx;
+}
+.box_d{
+    margin: 0;
+}
+.asd{
+    display: block;
+    margin-top: -25rpx;
+}

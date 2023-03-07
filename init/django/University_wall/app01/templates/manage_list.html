@@ -1,0 +1,102 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>发布内容管理</title>
+{% endblock %}
+
+
+{% block content %}
+    <h1 style="float: left">已审核内容列表</h1>
+<div style="float: right;margin-right: 150px;height: 35px; line-height: 35px">
+{#    {% for x in adminsend %}#}
+{#        {% if x.title_type == "baidu_text" %}#}
+{#            <span>百度文本审核</span>#}
+{#        {% endif %}#}
+{##}
+{#        {% if x.title_type == "baidu_image" %}#}
+{#            <span>百度图片审核</span>#}
+{#        {% endif %}#}
+{##}
+{#        {% if x.title_type == "baidu_video" %}#}
+{#            <span>百度视频审核</span>#}
+{#        {% endif %}#}
+{##}
+{#        {% if x.title == "True" %}#}
+{#            <span style="color: red">已开启</span>#}
+{#        {% else %}#}
+{#            <span style="color: red">未开启</span>#}
+{#        {% endif %}#}
+{##}
+{##}
+{#            <a  class="layui-btn layui-btn-xs"#}
+{#        style="width: 100px ;height: 35px;line-height:35px;margin-right: 160px" lay-event="edit"#}
+{#        href = "/audit/{{ x.id }}/baidu/">        切换#}
+{#    </a>#}
+{##}
+{#    {% endfor %}#}
+
+</div>
+
+    <div class="layui-form">
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>姓名</th>
+                <th>学号</th>
+                <th>校区</th>
+                <th>院系</th>
+                <th>专业</th>
+                <th>状态</th>
+                <th>文本内容</th>
+                <th>类型</th>
+                <th>发布时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for obj in list %}
+                <tr>
+                    <th>{{ obj.id }}</th>
+                    <th>{{ obj.user.username }}</th>
+                    <th>{{ obj.user.name }}</th>
+                    <th>{{ obj.user.student_number }}</th>
+                    <th>{{ obj.user.campus }}</th>
+                    <th>{{ obj.user.department }}</th>
+                    <th>{{ obj.user.profession }}</th>
+                    <th>
+                        {% if  obj.admin_hide != "True"  %}
+                            <span>未审核</span>
+                        {% else %}
+                            <span>已审核</span>
+                        {% endif %}
+
+
+                    </th>
+                    <th>{{ obj.text }}</th>
+                    <th>{{ obj.type }}</th>
+                    <th>{{ obj.create_time }}</th>
+                    <td>
+                    {% if admin_audit.audit_privilege %}
+
+                        <a class="layui-btn layui-btn-xs" lay-event="edit" href="/audit/{{ obj.id }}/detail/">详细信息</a>
+
+
+                    {% else %}
+                        <span>不可操作</span>
+                    {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+
+
+
+{% endblock %}

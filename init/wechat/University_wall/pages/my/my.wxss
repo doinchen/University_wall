@@ -1,0 +1,47 @@
+#myLogin{
+    background-color: #328EEB;
+    height: 400rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+#myIcon{
+    width: 200rpx;
+    height: 200rpx;
+    border-radius: 50%;
+  }
+  #nickName{
+    color:white;
+  }
+  .menu{
+    border-top: 1rpx solid darkgray;
+      /* background-color: aqua; */
+      margin-top: 10rpx;
+  }
+  .menu_li{
+      /* background-color: bisque; */
+    align-items: center;
+    width: 100%;
+      text-align:left;
+      padding: 10rpx 0;
+
+      border-bottom: 1rpx solid darkgray;
+
+      display: flex;
+      flex-direction: row;
+  }
+  .menu_li image{
+    margin-left: 20rpx;
+      /* background-color: thistle; */
+      width: 60rpx;
+      height: 60rpx;
+  }
+  .menu_li text{
+      display: block;
+      width: 75%;
+      /* background-color: tomato; */
+  }
+  .chieck{
+    background-color: #ededed !important;
+  }

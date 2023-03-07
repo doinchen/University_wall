@@ -1,0 +1,49 @@
+<view class="body">
+  <view class="if_image" wx:if="{{type == 'avatarurl'}}">
+    <view> 
+    <image src="{{avatarurl}}" mode="widthFix">
+    </image>
+    </view>
+    <button type="primary" bindtap="choosefile">选择图片</button>
+    <button type="primary" bindtap="upfile">上传图片</button>
+  </view>
+  <view class="if_username" wx:if="{{type == 'username'}}">
+    <input bindinput="inputuname" class="weui-input" placeholder-class="weui-input__placeholder" placeholder="请输入"  type="text"/>
+    <button class="weui-btn" type="primary" bindtap="changeuname">确定</button>
+    <view>{{c}}</view>
+  </view>
+  <view wx:if="{{type == 'id'}}">
+  <view class="weui-cells__title">更改绑定手机号</view>
+    <view class="weui-cell weui-cell_vcode">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">手机号</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder-class="weui-input__placeholder" placeholder="请输入手机号" />
+                </view>
+                <view class="weui-cell__ft">
+                    <view class="weui-vcode-btn" aria-role="button">获取验证码</view>
+                </view>
+            </view>
+            <button class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+
+
+  </view>
+  <view class="if_password" wx:if="{{type == 'password'}}">
+    <view class="weui-cell weui-cell_active">
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder-class="weui-input__placeholder" placeholder="请输入旧密码" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_active">
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder-class="weui-input__placeholder" placeholder="请输入新密码" />
+        <input class="weui-input" placeholder-class="weui-input__placeholder" placeholder="请确认新密码" />
+        
+      </view>
+      
+    </view>
+    <button class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+
+  </view>
+</view>
